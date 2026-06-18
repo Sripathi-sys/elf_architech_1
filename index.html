@@ -1397,61 +1397,7 @@
               </p>
             </div>
 
-            <!-- 4. City -->
-            <div class="form-group">
-              <label class="form-label" for="field-city">City *</label>
-              <input type="text" id="field-city" placeholder="e.g. Hyderabad, Bangalore" class="form-input" required>
-              <p id="err-city" class="hidden field-error-text">Please enter your city of operation.</p>
-            </div>
 
-            <!-- 5. Completed Projects -->
-            <div class="form-group">
-              <label class="form-label" for="field-projects">Projects Completed *</label>
-              <select id="field-projects" class="form-input" required style="appearance: auto;">
-                <option value="" disabled selected>Select number of completed projects</option>
-                <option value="1-5">1 to 5 Projects</option>
-                <option value="6-15">6 to 15 Projects</option>
-                <option value="16-30">16 to 30 Projects</option>
-                <option value="30+">30+ Projects Completed</option>
-              </select>
-              <p id="err-projects" class="hidden field-error-text">Please select your completed projects range.</p>
-            </div>
-
-            <!-- 6. Monthly Project Capacity -->
-            <div class="form-group">
-              <label class="form-label" for="field-capacity">Monthly Project Capacity *</label>
-              <select id="field-capacity" class="form-input" required style="appearance: auto;">
-                <option value="" disabled selected>Select active project handling capacity</option>
-                <option value="1-2">1 - 2 Concurrent Projects</option>
-                <option value="3-5">3 - 5 Concurrent Projects</option>
-                <option value="6+">6+ Concurrent Projects</option>
-              </select>
-              <p id="err-capacity" class="hidden field-error-text">Please select your monthly project capacity.</p>
-            </div>
-
-            <!-- 7. Current Lead Source -->
-            <div class="form-group">
-              <label class="form-label" for="field-source">Current Lead Source *</label>
-              <select id="field-source" class="form-input" required style="appearance: auto;">
-                <option value="" disabled selected>Select primary lead source</option>
-                <option value="referrals">Referrals & Word of Mouth</option>
-                <option value="meta-ads">Meta Ads (Facebook/Instagram)</option>
-                <option value="google-seo">Google Search / SEO</option>
-                <option value="offline">Offline Agents & Coordinators</option>
-                <option value="none">We do not do active marketing</option>
-              </select>
-              <p id="err-source" class="hidden field-error-text">Please select your current primary lead source.</p>
-            </div>
-
-            <!-- 8. Biggest Growth Challenge -->
-            <div class="form-group">
-              <label class="form-label" for="field-challenge">Biggest Growth Challenge *</label>
-              <textarea id="field-challenge" rows="3"
-                placeholder="What is stopping you from securing ₹10 Crore in projects?" class="form-input" required
-                minlength="10" style="resize: vertical;"></textarea>
-              <p id="err-challenge" class="hidden field-error-text">Please describe your challenge (minimum 10
-                characters).</p>
-            </div>
 
             <!-- Razorpay Button -->
             <button type="submit" id="payBtn" class="btn-accent"
@@ -1497,7 +1443,7 @@
       </div>
 
       <p class="text-[10px] uppercase tracking-wider font-extrabold" style="color: var(--navy-light);">
-        &copy; 2026 PK Adstudio. All rights reserved.
+        &copy; 2026 ELFGENCY GROWTH LAB PVT LTD. All rights reserved.
       </p>
 
     </div>
@@ -1563,32 +1509,17 @@
       var name = document.getElementById('field-name').value.trim();
       var company = document.getElementById('field-company').value.trim();
       var phone = document.getElementById('field-phone').value.trim();
-      var city = document.getElementById('field-city').value.trim();
-      var projects = document.getElementById('field-projects').value;
-      var capacity = document.getElementById('field-capacity').value;
-      var source = document.getElementById('field-source').value;
-      var challenge = document.getElementById('field-challenge').value.trim();
 
       // Check fields
       var nameOk = name.length >= 2;
       var companyOk = company.length >= 2;
       var phoneOk = isValidPhone(phone);
-      var cityOk = city.length >= 2;
-      var projectsOk = projects !== "";
-      var capacityOk = capacity !== "";
-      var sourceOk = source !== "";
-      var challengeOk = challenge.length >= 10;
 
       toggleError('err-name', !nameOk);
       toggleError('err-company', !companyOk);
       toggleError('err-phone', !phoneOk);
-      toggleError('err-city', !cityOk);
-      toggleError('err-projects', !projectsOk);
-      toggleError('err-capacity', !capacityOk);
-      toggleError('err-source', !sourceOk);
-      toggleError('err-challenge', !challengeOk);
 
-      if (!nameOk || !companyOk || !phoneOk || !cityOk || !projectsOk || !capacityOk || !sourceOk || !challengeOk) {
+      if (!nameOk || !companyOk || !phoneOk) {
         // Scroll to first error field
         var firstErr = document.querySelector('.form-input.error');
         if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1599,12 +1530,7 @@
       triggerPayment({
         name: name,
         company: company,
-        phone: cleanPhone(phone),
-        city: city,
-        projects: projects,
-        capacity: capacity,
-        source: source,
-        challenge: challenge
+        phone: cleanPhone(phone)
       });
     }
 
@@ -1638,7 +1564,7 @@
           "key": "rzp_live_SurJv43tHdLZeq", // Real or configurable key
           "amount": 49900, // INR 499.00 in paise
           "currency": "INR",
-          "name": "PK Adstudio",
+          "name": "ELFGENCY GROWTH LAB PVT LTD",
           "description": "Project Growth Audit Session",
           "handler": function (response) {
             // Payment success callback
@@ -1716,7 +1642,7 @@
           The official Razorpay gateway was blocked by your network or did not load. We have launched our local testing gateway so you can test this conversion funnel.
         </p>
         <div style="background-color: var(--primary-bg); border-radius: 0.5rem; padding: 1rem; margin-bottom: 1.5rem; text-align: left; font-size: 0.75rem;">
-          <strong>Merchant:</strong> PK Adstudio<br>
+          <strong>Merchant:</strong> ELFGENCY GROWTH LAB PVT LTD<br>
           <strong>Product:</strong> Project Growth Audit Session<br>
           <strong>Fee:</strong> ₹499.00 INR
         </div>

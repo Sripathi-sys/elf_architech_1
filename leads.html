@@ -273,11 +273,7 @@
         <thead>
           <tr>
             <th>Company & Applicant</th>
-            <th>Contact Details</th>
-            <th>Location</th>
-            <th>Metrics</th>
-            <th>Marketing Source</th>
-            <th>Growth Challenge</th>
+            <th>Contact Details (WhatsApp)</th>
             <th>Transaction Details</th>
           </tr>
         </thead>
@@ -335,19 +331,6 @@
             <div>${escapeHtml(lead.phone || '')}</div>
           </td>
           <td>
-            <div class="bold-cell">${escapeHtml(lead.city || '')}</div>
-          </td>
-          <td>
-            <div>Completed: <strong>${escapeHtml(lead.projects || '')}</strong></div>
-            <div style="font-size: 0.75rem; color: var(--navy-light);">Capacity: <strong>${escapeHtml(lead.capacity || '')} projects</strong></div>
-          </td>
-          <td>
-            <span class="lead-badge badge-slate">${escapeHtml(lead.source || '')}</span>
-          </td>
-          <td>
-            <div class="challenge-text">"${escapeHtml(lead.challenge || '')}"</div>
-          </td>
-          <td>
             <span class="lead-badge badge-blue">${escapeHtml(lead.paymentId || '')}</span>
             <span class="timestamp">${formatTime(lead.timestamp)}</span>
           </td>
@@ -383,7 +366,7 @@
         return;
       }
 
-      var headers = ['Timestamp', 'Payment ID', 'Full Name', 'Company Name', 'WhatsApp Number', 'City', 'Projects Completed', 'Monthly Capacity', 'Lead Source', 'Biggest Challenge'];
+      var headers = ['Timestamp', 'Payment ID', 'Full Name', 'Company Name', 'WhatsApp Number'];
       var csvRows = [headers.join(',')];
 
       currentLeads.forEach(function(lead) {
@@ -392,12 +375,7 @@
           lead.paymentId || '',
           '"' + (lead.name || '').replace(/"/g, '""') + '"',
           '"' + (lead.company || '').replace(/"/g, '""') + '"',
-          lead.phone || '',
-          '"' + (lead.city || '').replace(/"/g, '""') + '"',
-          lead.projects || '',
-          lead.capacity || '',
-          lead.source || '',
-          '"' + (lead.challenge || '').replace(/"/g, '""') + '"'
+          lead.phone || ''
         ];
         csvRows.push(row.join(','));
       });
