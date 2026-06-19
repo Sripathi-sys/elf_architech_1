@@ -606,10 +606,11 @@
 
     .root-issue-list li {
       margin-bottom: 0.75rem;
-      display: flex;
-      align-items: flex-start;
+      position: relative;
+      padding-left: 1.5rem;
       font-size: 0.95rem;
       font-weight: 600;
+      text-align: left;
     }
 
     .root-issue-list li::before {
@@ -618,8 +619,9 @@
       font-weight: bold;
       font-size: 1.5rem;
       line-height: 1;
-      margin-right: 0.625rem;
-      display: inline-block;
+      position: absolute;
+      left: 0;
+      top: -0.15rem;
     }
 
     /* Form Styles */
@@ -888,7 +890,7 @@
   </header>
 
   <!-- ═══ SECTION 2: PAIN POINTS ═══ -->
-  <section class="py-16" style="background-color: var(--secondary-bg);">
+  <section class="py-16" style="background-color: var(--secondary-bg); padding-bottom: 2rem;">
     <div class="container max-w-4xl text-center">
 
       <h2 class="aos fade-up font-extrabold text-2xl md:text-3.5xl uppercase tracking-tight mb-4">
@@ -977,7 +979,7 @@
   </section>
 
   <!-- ═══ SECTION 3: ROOT PROBLEM ═══ -->
-  <section class="py-16 relative overflow-hidden">
+  <section class="py-16 relative overflow-hidden" style="padding-top: 2rem;">
     <div class="glow-blob glow-blob-2"></div>
     <div class="container max-w-3xl text-center">
 
