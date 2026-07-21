@@ -613,15 +613,12 @@
 
     /* Pain cards */
     .pain-card {
-      border-left: 4px solid var(--amber-gold);
+      border-left: 4px solid #f87171;
       background-color: var(--secondary-bg);
-    }
-
-    .pain-cross {
-      color: var(--amber-gold);
-      font-size: 1.25rem;
-      font-weight: 900;
-      margin-right: 0.5rem;
+      border-top: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
     }
 
     /* Root problem section design */
@@ -1010,7 +1007,7 @@
   </section>
 
   <!-- ═══ SECTION 2: PAIN POINTS ═══ -->
-  <section class="py-16" style="background-color: var(--secondary-bg); padding-bottom: 2rem;">
+  <section class="py-16" style="background-color: var(--primary-bg); padding-bottom: 2rem;">
     <div class="container max-w-4xl text-center">
 
       <h2 class="aos fade-up font-extrabold text-2xl md:text-3.5xl uppercase tracking-tight mb-4">
@@ -1026,8 +1023,8 @@
       <div class="grid grid-2col gap-4 text-left mb-8">
 
         <div class="aos fade-up premium-card pain-card p-5 rounded-lg">
-          <h3 class="font-bold text-sm uppercase mb-2 text-navy-dark flex items-center">
-            <span class="pain-cross">✗</span> INCONSISTENT PROJECT FLOW
+          <h3 class="font-bold text-sm uppercase mb-2 text-navy-dark flex items-center" style="gap: 0.5rem;">
+            <span>📉</span> INCONSISTENT PROJECT FLOW
           </h3>
           <p class="text-xs text-navy-light leading-relaxed">
             Your pipeline fluctuates wildly. You close three projects in one month, followed by three months of zero
@@ -1036,8 +1033,8 @@
         </div>
 
         <div class="aos fade-up premium-card pain-card p-5 rounded-lg">
-          <h3 class="font-bold text-sm uppercase mb-2 text-navy-dark flex items-center">
-            <span class="pain-cross">✗</span> QUOTE SHOPPERS WASTE TIME
+          <h3 class="font-bold text-sm uppercase mb-2 text-navy-dark flex items-center" style="gap: 0.5rem;">
+            <span>⏳</span> QUOTE SHOPPERS WASTE TIME
           </h3>
           <p class="text-xs text-navy-light leading-relaxed">
             Most inquiries are simply collecting quotation spreadsheets from multiple builders to bargain on margins.
@@ -1045,8 +1042,8 @@
         </div>
 
         <div class="aos fade-up premium-card pain-card p-5 rounded-lg">
-          <h3 class="font-bold text-sm uppercase mb-2 text-navy-dark flex items-center">
-            <span class="pain-cross">✗</span> PRICE-ONLY COMPARISONS
+          <h3 class="font-bold text-sm uppercase mb-2 text-navy-dark flex items-center" style="gap: 0.5rem;">
+            <span>💸</span> PRICE-ONLY COMPARISONS
           </h3>
           <p class="text-xs text-navy-light leading-relaxed">
             Landowners compare your high-quality architect-led approach directly with cheap contractors who cut
@@ -1055,8 +1052,8 @@
         </div>
 
         <div class="aos fade-up premium-card pain-card p-5 rounded-lg">
-          <h3 class="font-bold text-sm uppercase mb-2 text-navy-dark flex items-center">
-            <span class="pain-cross">✗</span> UNQUALIFIED META LEADS
+          <h3 class="font-bold text-sm uppercase mb-2 text-navy-dark flex items-center" style="gap: 0.5rem;">
+            <span>🚫</span> UNQUALIFIED META LEADS
           </h3>
           <p class="text-xs text-navy-light leading-relaxed">
             Your sales team spends hours chasing leads from Meta Ads who don't even own land or have any immediate
@@ -1065,8 +1062,8 @@
         </div>
 
         <div class="aos fade-up premium-card pain-card p-5 rounded-lg">
-          <h3 class="font-bold text-sm uppercase mb-2 text-navy-dark flex items-center">
-            <span class="pain-cross">✗</span> NO PROJECT VISIBILITY
+          <h3 class="font-bold text-sm uppercase mb-2 text-navy-dark flex items-center" style="gap: 0.5rem;">
+            <span>🔮</span> NO PROJECT VISIBILITY
           </h3>
           <p class="text-xs text-navy-light leading-relaxed">
             You cannot reliably forecast revenue because you have no system to calculate how many projects will close in
@@ -1075,8 +1072,8 @@
         </div>
 
         <div class="aos fade-up premium-card pain-card p-5 rounded-lg">
-          <h3 class="font-bold text-sm uppercase mb-2 text-navy-dark flex items-center">
-            <span class="pain-cross">✗</span> REFERRAL DEPENDENCY
+          <h3 class="font-bold text-sm uppercase mb-2 text-navy-dark flex items-center" style="gap: 0.5rem;">
+            <span>🔗</span> REFERRAL DEPENDENCY
           </h3>
           <p class="text-xs text-navy-light leading-relaxed">
             When referrals slow down, project acquisition stops. You have no direct switch to generate inquiries when
@@ -1087,8 +1084,8 @@
       </div>
 
       <!-- Out-of-grid single highlighted pain point -->
-      <div class="aos zoom-in max-w-xl mx-auto border-2 border-dashed p-4 rounded-xl bg-slate-50"
-        style="border-color: rgba(217, 119, 6, 0.2);">
+      <div class="aos zoom-in max-w-xl mx-auto border-2 border-dashed p-4 rounded-xl"
+        style="border-color: rgba(217, 119, 6, 0.25); background-color: var(--secondary-bg);">
         <p class="text-xs text-navy-medium font-bold">
           <span style="color: var(--amber-gold); font-weight: 800;">🚨 THE LEADS DON'T BECOME PROJECTS:</span> Your ads
           generate volume, but quote-shoppers waste hours of your estimator's and project team's valuable hours.
