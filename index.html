@@ -1528,21 +1528,73 @@
         return;
       }
 
-      // If validation passes, trigger payment
-      triggerPayment({
+      var lead = {
         name: name,
         company: company,
         phone: cleanPhone(phone)
-      });
+      };
+
+      // Save lead immediately as Pending
+      saveLeadLocally(lead, 'Pending', 'PENDING');
+      sendLeadToGoogleSheet(lead, 'Pending', 'PENDING');
+
+      // If validation passes, trigger payment
+      triggerPayment(lead);
     }
 
     // ── 6. PAYMENT ROUTING & LOCAL STORAGE STORAGE ──
-    function saveLeadLocally(leadData, paymentId) {
+    var GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwukEXkGeXVqNbBMfC1aqhHcIgqKDdtJ60_DtPB8TxO7zIYHeudRUWfVHkDl9bXvB-1/exec";
+
+    function sendLeadToGoogleSheet(leadData, status, paymentId) {
+      if (!GOOGLE_SCRIPT_URL) return;
+
+      var payload = {
+        name: leadData.name,
+        company: leadData.company,
+        phone: leadData.phone,
+        status: status,
+        paymentId: paymentId || ''
+      };
+
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors', // avoids CORS issues with Google Apps Script Web App redirects
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(function() {
+        console.log('Lead synced to Google Sheets:', status);
+      })
+      .catch(function(err) {
+        console.error('Error syncing lead to Google Sheets:', err);
+      });
+    }
+
+    function saveLeadLocally(leadData, status, paymentId) {
       leadData.paymentId = paymentId;
+      leadData.status = status;
       leadData.timestamp = new Date().toISOString();
 
       var leads = JSON.parse(localStorage.getItem('audit_leads') || '[]');
-      leads.unshift(leadData);
+      
+      // Update existing lead if it exists by phone number
+      var foundIndex = -1;
+      for (var i = 0; i < leads.length; i++) {
+        if (leads[i].phone === leadData.phone) {
+          foundIndex = i;
+          break;
+        }
+      }
+
+      if (foundIndex > -1) {
+        leads[foundIndex].status = status;
+        leads[foundIndex].paymentId = paymentId;
+        leads[foundIndex].timestamp = leadData.timestamp;
+      } else {
+        leads.unshift(leadData);
+      }
       localStorage.setItem('audit_leads', JSON.stringify(leads));
     }
 
@@ -1563,14 +1615,17 @@
       // Check if Razorpay constructor is loaded. If blocked (e.g. by adblockers), fall back to beautiful simulated checkout modal.
       if (typeof Razorpay !== 'undefined') {
         var options = {
-          "key": "rzp_live_SurJv43tHdLZeq", // Real or configurable key
+          "key": "rzp_test_TFjifeV9XKyA7G", // Updated with user's Key ID
           "amount": 49900, // INR 499.00 in paise
           "currency": "INR",
           "name": "Elfgency Growth lab pvt ltd",
           "description": "Project Growth Audit Session",
           "handler": function (response) {
             // Payment success callback
-            saveLeadLocally(leadData, response.razorpay_payment_id || 'RZP-' + Math.floor(Math.random() * 10000000));
+            var payId = response.razorpay_payment_id || 'RZP-' + Math.floor(Math.random() * 10000000);
+            saveLeadLocally(leadData, 'Paid', payId);
+            sendLeadToGoogleSheet(leadData, 'Paid', payId);
+            
             // Trigger purchase conversion tracking
             if (typeof fbq === 'function') {
               fbq('track', 'Purchase', {
@@ -1673,7 +1728,8 @@
       document.getElementById('sim-success').onclick = function () {
         document.body.removeChild(overlay);
         var payId = 'SIM-RZP-' + Math.floor(Math.random() * 10000000);
-        saveLeadLocally(leadData, payId);
+        saveLeadLocally(leadData, 'Paid', payId);
+        sendLeadToGoogleSheet(leadData, 'Paid', payId);
 
         if (typeof fbq === 'function') {
           fbq('track', 'Purchase', {

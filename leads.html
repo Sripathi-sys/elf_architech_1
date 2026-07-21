@@ -322,6 +322,10 @@
 
       leads.forEach(function(lead) {
         var tr = document.createElement('tr');
+        var isPaid = (lead.status || 'Paid') === 'Paid';
+        var badgeClass = isPaid ? 'badge-blue' : 'badge-slate';
+        var statusLabel = lead.status || 'Paid';
+        
         tr.innerHTML = `
           <td>
             <div class="bold-cell">${escapeHtml(lead.company || '')}</div>
@@ -331,7 +335,10 @@
             <div>${escapeHtml(lead.phone || '')}</div>
           </td>
           <td>
-            <span class="lead-badge badge-blue">${escapeHtml(lead.paymentId || '')}</span>
+            <span class="lead-badge ${badgeClass}">${escapeHtml(statusLabel)}</span>
+            <div style="font-size: 0.75rem; color: var(--navy-light); margin-top: 0.25rem;">
+              ID: ${escapeHtml(lead.paymentId || '')}
+            </div>
             <span class="timestamp">${formatTime(lead.timestamp)}</span>
           </td>
         `;
@@ -366,12 +373,13 @@
         return;
       }
 
-      var headers = ['Timestamp', 'Payment ID', 'Full Name', 'Company Name', 'WhatsApp Number'];
+      var headers = ['Timestamp', 'Status', 'Payment ID', 'Full Name', 'Company Name', 'WhatsApp Number'];
       var csvRows = [headers.join(',')];
 
       currentLeads.forEach(function(lead) {
         var row = [
           lead.timestamp || '',
+          lead.status || 'Paid',
           lead.paymentId || '',
           '"' + (lead.name || '').replace(/"/g, '""') + '"',
           '"' + (lead.company || '').replace(/"/g, '""') + '"',
