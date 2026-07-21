@@ -50,7 +50,7 @@ module.exports = async (req, res) => {
     event_id: paymentId, // Deduplication key (matches client-side eventID)
     user_data: userData,
     custom_data: {
-      value: parseFloat(amount) || 1.00,
+      value: parseFloat(amount) || 499.00,
       currency: currency || 'INR',
       content_name: 'Project Growth Audit'
     },
