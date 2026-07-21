@@ -10,22 +10,24 @@
 
   <!-- Meta Pixel Code -->
   <script>
-    window.addEventListener('load', function() {
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
+    window.addEventListener('load', function () {
+      !function (f, b, e, v, n, t, s) {
+        if (f.fbq) return; n = f.fbq = function () {
+          n.callMethod ?
+          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+        };
+        if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+        n.queue = []; t = b.createElement(e); t.async = !0;
+        t.src = v; s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s)
+      }(window, document, 'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', '1591559662540166');
       fbq('track', 'PageView');
     });
   </script>
   <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1591559662540166&ev=PageView&noscript=1"
-  /></noscript>
+      src="https://www.facebook.com/tr?id=1591559662540166&ev=PageView&noscript=1" /></noscript>
   <!-- End Meta Pixel Code -->
 
   <!-- Async Google Fonts -->
@@ -876,32 +878,31 @@
                 <div class="step-number">1</div>
                 <div class="step-content">
                   <h3>AUDIT</h3>
-                  <p>Map Your Growth Potential<br><span style="font-weight: 700; color: var(--navy-dark);">(₹499 Project
-                      Growth Audit)</span></p>
+                  <p>Understand where you are today.</p>
                 </div>
               </div>
 
               <div class="process-step">
                 <div class="step-number">2</div>
                 <div class="step-content">
-                  <h3>STRATEGY</h3>
-                  <p>Build Your Project Acquisition Roadmap</p>
+                  <h3>DIRECTION</h3>
+                  <p>Know the best path to your goal.</p>
                 </div>
               </div>
 
               <div class="process-step">
                 <div class="step-number">3</div>
                 <div class="step-content">
-                  <h3>VALIDATION</h3>
-                  <p>Confirm Capacity, Team & Market Fit</p>
+                  <h3>ROADMAP</h3>
+                  <p>Build a practical growth plan.</p>
                 </div>
               </div>
 
               <div class="process-step">
                 <div class="step-number">4</div>
                 <div class="step-content">
-                  <h3>SCALE</h3>
-                  <p>Deploy A Predictable Project Acquisition System</p>
+                  <h3>EXECUTION</h3>
+                  <p>Turn the plan into predictable growth.</p>
                 </div>
               </div>
 
@@ -1352,7 +1353,7 @@
 
       <div class="aos fade-up mb-4">
         <div class="scarcity-badge">
-          ONLY <span class="slot-count">3</span> SLOTS REMAINING THIS MONTH
+          ONLY <span class="slot-count"> 3 </span> SLOTS REMAINING THIS MONTH
         </div>
       </div>
 
@@ -1394,7 +1395,7 @@
             RESERVE YOUR AUDIT SLOT
           </h3>
           <p class="text-center text-xs font-bold mb-6 uppercase tracking-wider" style="color: var(--blue-accent);">
-            Secure &bull; ₹499 Fully Refundable Audit Fee
+            Secure &bull; ₹499 Audit Fee
           </p>
 
           <form id="auditForm" onsubmit="handleFormSubmit(event)" novalidate>
@@ -1478,7 +1479,7 @@
 
   <!-- Razorpay Checkout Integration -->
   <script>
-    window.addEventListener('load', function() {
+    window.addEventListener('load', function () {
       var script = document.createElement('script');
       script.src = "https://checkout.razorpay.com/v1/checkout.js";
       script.defer = true;
@@ -1599,12 +1600,12 @@
         },
         body: JSON.stringify(payload)
       })
-      .then(function() {
-        console.log('Lead synced to Google Sheets:', status);
-      })
-      .catch(function(err) {
-        console.error('Error syncing lead to Google Sheets:', err);
-      });
+        .then(function () {
+          console.log('Lead synced to Google Sheets:', status);
+        })
+        .catch(function (err) {
+          console.error('Error syncing lead to Google Sheets:', err);
+        });
     }
 
     function saveLeadLocally(leadData, status, paymentId) {
@@ -1613,7 +1614,7 @@
       leadData.timestamp = new Date().toISOString();
 
       var leads = JSON.parse(localStorage.getItem('audit_leads') || '[]');
-      
+
       // Update existing lead if it exists by phone number
       var foundIndex = -1;
       for (var i = 0; i < leads.length; i++) {
@@ -1660,7 +1661,7 @@
             var payId = response.razorpay_payment_id || 'RZP-' + Math.floor(Math.random() * 10000000);
             saveLeadLocally(leadData, 'Paid', payId);
             sendLeadToGoogleSheet(leadData, 'Paid', payId);
-            
+
             window.location.href = "thankyou.html?status=success&name=" + encodeURIComponent(leadData.name);
           },
           "prefill": {
