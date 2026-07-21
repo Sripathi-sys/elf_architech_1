@@ -8,16 +8,18 @@
 
   <!-- Meta Pixel Code -->
   <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1591559662540166');
-    fbq('track', 'PageView');
+    window.addEventListener('load', function() {
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '1591559662540166');
+      fbq('track', 'PageView');
+    });
   </script>
   <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1591559662540166&ev=PageView&noscript=1"
@@ -29,7 +31,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap"
-    rel="stylesheet">
+    rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap"
+      rel="stylesheet">
+  </noscript>
 
   <style>
     :root {
@@ -370,46 +377,48 @@
       // Trigger Purchase event only if page loaded with status=success
       var status = params.get('status');
       if (status === 'success') {
-        var leads = JSON.parse(localStorage.getItem('audit_leads') || '[]');
-        var lastLead = leads[0] || {};
-        
-        // Prevent duplicate Purchase tracking for the same payment ID
-        var trackedPurchases = JSON.parse(localStorage.getItem('tracked_purchases') || '[]');
-        var payId = lastLead.paymentId || 'UNKNOWN_' + Date.now();
-        
-        if (trackedPurchases.indexOf(payId) === -1) {
-          trackedPurchases.push(payId);
-          localStorage.setItem('tracked_purchases', JSON.stringify(trackedPurchases));
+        window.addEventListener('load', function() {
+          var leads = JSON.parse(localStorage.getItem('audit_leads') || '[]');
+          var lastLead = leads[0] || {};
           
-          // 1. Trigger Client-Side Meta Pixel Purchase event with eventID for deduplication
-          if (typeof fbq === 'function') {
-            fbq('track', 'Purchase', {
-              value: 499.00,
-              currency: 'INR',
-              content_name: 'Project Growth Audit'
-            }, { eventID: payId });
-          }
+          // Prevent duplicate Purchase tracking for the same payment ID
+          var trackedPurchases = JSON.parse(localStorage.getItem('tracked_purchases') || '[]');
+          var payId = lastLead.paymentId || 'UNKNOWN_' + Date.now();
           
-          // 2. Trigger Server-Side Conversion API (CAPI) Purchase event
-          fetch('/api/track-purchase', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              name: lastLead.name || name || 'Partner',
-              phone: lastLead.phone || '',
-              email: lastLead.email || '',
-              amount: 499.00,
-              currency: 'INR',
-              status: 'success',
-              paymentId: payId
+          if (trackedPurchases.indexOf(payId) === -1) {
+            trackedPurchases.push(payId);
+            localStorage.setItem('tracked_purchases', JSON.stringify(trackedPurchases));
+            
+            // 1. Trigger Client-Side Meta Pixel Purchase event with eventID for deduplication
+            if (typeof fbq === 'function') {
+              fbq('track', 'Purchase', {
+                value: 499.00,
+                currency: 'INR',
+                content_name: 'Project Growth Audit'
+              }, { eventID: payId });
+            }
+            
+            // 2. Trigger Server-Side Conversion API (CAPI) Purchase event
+            fetch('/api/track-purchase', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                name: lastLead.name || name || 'Partner',
+                phone: lastLead.phone || '',
+                email: lastLead.email || '',
+                amount: 499.00,
+                currency: 'INR',
+                status: 'success',
+                paymentId: payId
+              })
             })
-          })
-          .then(function(res) { return res.json(); })
-          .then(function(data) { console.log('Meta CAPI Success:', data); })
-          .catch(function(err) { console.error('Meta CAPI Error:', err); });
-        }
+            .then(function(res) { return res.json(); })
+            .then(function(data) { console.log('Meta CAPI Success:', data); })
+            .catch(function(err) { console.error('Meta CAPI Error:', err); });
+          }
+        });
       }
     })();
   </script>
