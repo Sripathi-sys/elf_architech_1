@@ -370,12 +370,45 @@
       // Trigger Purchase event only if page loaded with status=success
       var status = params.get('status');
       if (status === 'success') {
-        if (typeof fbq === 'function') {
-          fbq('track', 'Purchase', {
-            value: 499.00,
-            currency: 'INR',
-            content_name: 'Project Growth Audit'
-          });
+        var leads = JSON.parse(localStorage.getItem('audit_leads') || '[]');
+        var lastLead = leads[0] || {};
+        
+        // Prevent duplicate Purchase tracking for the same payment ID
+        var trackedPurchases = JSON.parse(localStorage.getItem('tracked_purchases') || '[]');
+        var payId = lastLead.paymentId || 'UNKNOWN_' + Date.now();
+        
+        if (trackedPurchases.indexOf(payId) === -1) {
+          trackedPurchases.push(payId);
+          localStorage.setItem('tracked_purchases', JSON.stringify(trackedPurchases));
+          
+          // 1. Trigger Client-Side Meta Pixel Purchase event with eventID for deduplication
+          if (typeof fbq === 'function') {
+            fbq('track', 'Purchase', {
+              value: 499.00,
+              currency: 'INR',
+              content_name: 'Project Growth Audit'
+            }, { eventID: payId });
+          }
+          
+          // 2. Trigger Server-Side Conversion API (CAPI) Purchase event
+          fetch('/api/track-purchase', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              name: lastLead.name || name || 'Partner',
+              phone: lastLead.phone || '',
+              email: lastLead.email || '',
+              amount: 499.00,
+              currency: 'INR',
+              status: 'success',
+              paymentId: payId
+            })
+          })
+          .then(function(res) { return res.json(); })
+          .then(function(data) { console.log('Meta CAPI Success:', data); })
+          .catch(function(err) { console.error('Meta CAPI Error:', err); });
         }
       }
     })();
