@@ -222,34 +222,194 @@
       color: var(--navy-light);
     }
 
-    /* Box Info */
-    .info-box {
+    /* Action Required Card */
+    .action-card {
+      background-color: #fffbeb;
+      border: 2px dashed #f59e0b;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .action-title {
+      color: #b45309;
+      font-size: 0.875rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+    }
+
+    .action-subtitle {
+      font-size: 1.125rem;
+      font-weight: 800;
+      color: var(--navy-dark);
+      margin-bottom: 0.75rem;
+    }
+
+    .action-text {
+      font-size: 0.85rem;
+      color: var(--navy-light);
+      margin-bottom: 1.25rem;
+      line-height: 1.4;
+    }
+
+    .btn-whatsapp {
+      background-color: #25d366;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.875rem 1.5rem;
+      border-radius: 0.5rem;
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 4px 6px -1px rgba(37, 211, 102, 0.2), 0 2px 4px -2px rgba(37, 211, 102, 0.2);
+    }
+
+    .btn-whatsapp:hover {
+      background-color: #128c7e;
+      transform: translateY(-1px);
+    }
+
+    .whatsapp-footer {
+      font-size: 0.7rem;
+      color: var(--navy-light);
+      margin-top: 0.5rem;
+      text-align: center;
+      display: block;
+    }
+
+    /* What Happens Next Section */
+    .next-steps {
+      text-align: left;
+      margin-bottom: 2rem;
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.5rem;
+    }
+
+    .section-title {
+      font-size: 0.875rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--navy-dark);
+      margin-bottom: 1.25rem;
+    }
+
+    .next-step-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .next-step-header {
+      font-weight: 800;
+      color: var(--navy-dark);
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .next-step-desc {
+      font-size: 0.85rem;
+      color: var(--navy-light);
+      line-height: 1.4;
+      padding-left: 1.75rem;
+    }
+
+    .next-step-list {
+      margin-top: 0.5rem;
+      list-style-type: none;
+    }
+
+    .next-step-list li {
+      margin-bottom: 0.25rem;
+      position: relative;
+      padding-left: 1rem;
+      color: var(--navy-medium);
+      font-size: 0.8rem;
+    }
+
+    .next-step-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--blue-accent);
+      font-weight: bold;
+    }
+
+    .next-step-checks {
+      margin-top: 0.5rem;
+      list-style-type: none;
+    }
+
+    .next-step-checks li {
+      margin-bottom: 0.25rem;
+      position: relative;
+      padding-left: 1.25rem;
+      color: var(--emerald-green);
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+
+    .next-step-checks li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+    }
+
+    /* What to Keep Ready Section */
+    .ready-box {
       background-color: var(--primary-bg);
       border: 1px solid var(--border-color);
       border-radius: 0.75rem;
       padding: 1.25rem;
       text-align: left;
-      font-size: 0.8rem;
       margin-bottom: 2rem;
     }
 
-    .info-box-title {
+    .ready-title {
       font-weight: 800;
       color: var(--navy-dark);
       margin-bottom: 0.5rem;
       text-transform: uppercase;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       letter-spacing: 0.02em;
     }
 
-    .info-box ul {
-      list-style-position: inside;
-      margin-left: 0.25rem;
+    .ready-desc {
+      font-size: 0.8rem;
       color: var(--navy-light);
+      margin-bottom: 0.75rem;
     }
 
-    .info-box li {
+    .ready-list {
+      list-style-type: none;
+    }
+
+    .ready-list li {
+      font-size: 0.85rem;
       margin-bottom: 0.375rem;
+      position: relative;
+      padding-left: 1rem;
+      color: var(--navy-medium);
+      font-weight: 500;
+    }
+
+    .ready-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--blue-accent);
+      font-weight: bold;
     }
 
     .btn-dashboard {
@@ -292,54 +452,79 @@
 
       <div class="success-icon">✓</div>
 
-      <span class="badge-paid">₹1 Payment Verified</span>
+      <span class="badge-paid">Payment Successful</span>
 
-      <h1 class="title">Slot Reserved!</h1>
-      <p class="subtitle">Thank you, <span id="applicant-name"
-          style="font-weight: 700; color: var(--navy-dark);">Partner</span>. Your Project Growth Audit has been
-        successfully logged.</p>
+      <h1 class="title" style="font-size: 1.5rem; margin-bottom: 0.75rem;">₹1 Construction Growth Audit Confirmed</h1>
+      <p class="subtitle" style="font-size: 0.95rem; margin-bottom: 0.5rem; line-height: 1.4;">
+        Thank you. Your Construction Growth Audit request has been successfully received.
+      </p>
+      <p class="subtitle" style="font-size: 0.85rem; font-weight: 500; margin-bottom: 2rem; display: none;">
+        <span id="applicant-name">Partner</span>
+      </p>
+      <p class="subtitle" style="font-size: 0.85rem; font-weight: 500; margin-bottom: 2rem;">
+        Your business has now entered our audit queue.
+      </p>
 
-      <!-- Progress Timeline -->
-      <div class="timeline">
-        <h3 class="timeline-title">Audit Processing Timeline</h3>
-
-        <!-- Step 1 -->
-        <div class="timeline-item completed">
-          <div class="timeline-marker">1</div>
-          <div class="timeline-content">
-            <h4>Application Fee Received</h4>
-            <p>₹1 registration fee processed and confirmed successfully.</p>
-          </div>
+      <!-- Action Required Card -->
+      <div class="action-card">
+        <div class="action-title">
+          <span>⚠️</span> Action Required
         </div>
-
-        <!-- Step 2 -->
-        <div class="timeline-item active">
-          <div class="timeline-marker">2</div>
-          <div class="timeline-content">
-            <h4>Consultant Allocation</h4>
-            <p>We are assigning our senior architect-led consultant to review your company details.</p>
-          </div>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="timeline-item">
-          <div class="timeline-marker">3</div>
-          <div class="timeline-content">
-            <h4>Direct WhatsApp Outreach</h4>
-            <p>We will message you on your WhatsApp number within 12 hours to schedule the session.</p>
-          </div>
-        </div>
-
+        <div class="action-subtitle">Confirm Your Audit on WhatsApp</div>
+        <p class="action-text">
+          Click the button below to connect with our team. We'll collect a few project details and schedule your audit session.
+        </p>
+        <a href="https://wa.me/919042757617?text=Hi%20%2C%20i%20have%20booked%20the%20audit%20session%20%2C%0ACan%20you%20please%20share%20the%20available%20slot." target="_blank" class="btn-whatsapp">
+          Confirm on WhatsApp
+        </a>
+        <span class="whatsapp-footer">(Opens WhatsApp with a pre-filled message)</span>
       </div>
 
-      <!-- Preparation Checklist -->
-      <div class="info-box">
-        <h4 class="info-box-title">How to prepare for your audit:</h4>
-        <ul>
-          <li>Keep photos or plans of your 3 most recently completed residential projects ready.</li>
-          <li>Be prepared to discuss your current Meta Ads or print marketing budgets/results.</li>
-          <li>Have your estimator's bandwidth metrics or contractor rates on hand.</li>
-          <li>Ensure you are in a quiet room on a desktop/laptop for our 60-minute Zoom call.</li>
+      <!-- What Happens Next Section -->
+      <div class="next-steps">
+        <h3 class="section-title">What Happens Next</h3>
+        
+        <div class="next-step-item">
+          <div class="next-step-header">1️⃣ Audit Confirmation</div>
+          <div class="next-step-desc">We'll confirm your audit request on WhatsApp.</div>
+        </div>
+
+        <div class="next-step-item">
+          <div class="next-step-header">2️⃣ Business Information</div>
+          <div class="next-step-desc">
+            We'll ask a few questions about:
+            <ul class="next-step-list">
+              <li>Your construction company</li>
+              <li>Current marketing</li>
+              <li>Sales process</li>
+              <li>Growth goals</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="next-step-item">
+          <div class="next-step-header">3️⃣ Construction Growth Audit</div>
+          <div class="next-step-desc">
+            Our team will analyze your business to identify what's limiting your growth. You'll receive:
+            <ul class="next-step-checks">
+              <li>Growth Bottlenecks</li>
+              <li>Priority Action Areas</li>
+              <li>Recommended Next Steps</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- What to Keep Ready Section -->
+      <div class="ready-box">
+        <h4 class="ready-title">What to Keep Ready</h4>
+        <p class="ready-desc">Before the audit, please keep these ready:</p>
+        <ul class="ready-list">
+          <li>Company Profile</li>
+          <li>Current Marketing Activities</li>
+          <li>Approximate Monthly Leads</li>
+          <li>Sales Process Overview</li>
+          <li>Business Growth Goals</li>
         </ul>
       </div>
 
@@ -356,7 +541,7 @@
       </div>
 
     </div>
-  </div>
+  </div></div>
 
   <footer>
     &copy; 2026 Elfgency Growth Lab Pvt Ltd. All rights reserved.
