@@ -292,7 +292,7 @@
 
       <div class="success-icon">✓</div>
 
-      <span class="badge-paid">₹499 Payment Verified</span>
+      <span class="badge-paid">₹1 Payment Verified</span>
 
       <h1 class="title">Slot Reserved!</h1>
       <p class="subtitle">Thank you, <span id="applicant-name"
@@ -308,7 +308,7 @@
           <div class="timeline-marker">1</div>
           <div class="timeline-content">
             <h4>Application Fee Received</h4>
-            <p>₹499 registration fee processed and confirmed successfully.</p>
+            <p>₹1 registration fee processed and confirmed successfully.</p>
           </div>
         </div>
 
@@ -392,7 +392,7 @@
             // 1. Trigger Client-Side Meta Pixel Purchase event with eventID for deduplication
             if (typeof fbq === 'function') {
               fbq('track', 'Purchase', {
-                value: 499.00,
+                value: 1.00,
                 currency: 'INR',
                 content_name: 'Project Growth Audit'
               }, { eventID: payId });
@@ -408,7 +408,7 @@
                 name: lastLead.name || name || 'Partner',
                 phone: lastLead.phone || '',
                 email: lastLead.email || '',
-                amount: 499.00,
+                amount: 1.00,
                 currency: 'INR',
                 status: 'success',
                 paymentId: payId

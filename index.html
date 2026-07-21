@@ -837,7 +837,7 @@
 
           <div class="aos fade-up text-center md:text-left mb-4">
             <p class="font-extrabold text-navy-dark text-lg mb-2" style="color: var(--blue-accent);">
-              ₹499 Project Growth Audit Session
+              ₹1 Project Growth Audit Session
             </p>
             <p class="text-xs text-navy-light font-medium" style="margin-top: -0.25rem; margin-bottom: 1rem;">
               60-Minute Intensive Assessment
@@ -876,7 +876,7 @@
                 <div class="step-number">1</div>
                 <div class="step-content">
                   <h3>AUDIT</h3>
-                  <p>Map Your Growth Potential<br><span style="font-weight: 700; color: var(--navy-dark);">(₹499 Project
+                  <p>Map Your Growth Potential<br><span style="font-weight: 700; color: var(--navy-dark);">(₹1 Project
                       Growth Audit)</span></p>
                 </div>
               </div>
@@ -1378,7 +1378,7 @@
             Only <span class="slot-count">3</span> Slots Remaining
           </p>
           <p class="text-xs text-navy-light leading-relaxed max-w-xs mx-auto">
-            Your ₹499 payment is verified. We have successfully registered your application. Our principal consultant
+            Your ₹1 payment is verified. We have successfully registered your application. Our principal consultant
             will contact you via WhatsApp shortly to coordinate your 1-on-1 growth audit.
           </p>
           <a href="thankyou.html" class="btn-primary mt-6"
@@ -1394,7 +1394,7 @@
             RESERVE YOUR AUDIT SLOT
           </h3>
           <p class="text-center text-xs font-bold mb-6 uppercase tracking-wider" style="color: var(--blue-accent);">
-            Secure &bull; ₹499 Fully Refundable Audit Fee
+            Secure &bull; ₹1 Fully Refundable Audit Fee
           </p>
 
           <form id="auditForm" onsubmit="handleFormSubmit(event)" novalidate>
@@ -1429,7 +1429,7 @@
             <!-- Razorpay Button -->
             <button type="submit" id="payBtn" class="btn-accent"
               style="width: 100%; border: none; cursor: pointer; display: block; max-width: 100%; margin-top: 1.5rem;">
-              PAY ₹499 & BOOK SLOT
+              PAY ₹1 & BOOK SLOT
             </button>
 
             <p class="text-center text-[10px] text-navy-light font-semibold uppercase mt-4">
@@ -1641,7 +1641,7 @@
       // Facebook pixel InitiateCheckout
       if (typeof fbq === 'function') {
         fbq('track', 'InitiateCheckout', {
-          value: 499.00,
+          value: 1.00,
           currency: 'INR',
           content_name: 'Project Growth Audit'
         });
@@ -1651,7 +1651,7 @@
       if (typeof Razorpay !== 'undefined') {
         var options = {
           "key": "rzp_live_TGABPVlhdBYYD4", // Updated with user's Key ID
-          "amount": 49900, // INR 499.00 in paise
+          "amount": 100, // INR 1.00 in paise (₹1)
           "currency": "INR",
           "name": "Elfgency Growth lab pvt ltd",
           "description": "Project Growth Audit Session",
@@ -1673,7 +1673,7 @@
           },
           "modal": {
             "ondismiss": function () {
-              payBtn.textContent = 'PAY ₹499 & BOOK SLOT';
+              payBtn.textContent = 'PAY ₹1 & BOOK SLOT';
               payBtn.disabled = false;
             }
           }
@@ -1682,7 +1682,7 @@
         var rzp = new Razorpay(options);
         rzp.on('payment.failed', function (resp) {
           alert('Payment was not completed. If you wish to test the checkout flow, you can complete the checkout using our integrated Testing Mode.');
-          payBtn.textContent = 'PAY ₹499 & BOOK SLOT';
+          payBtn.textContent = 'PAY ₹1 & BOOK SLOT';
           payBtn.disabled = false;
         });
         rzp.open();
@@ -1728,7 +1728,7 @@
         <div style="background-color: var(--primary-bg); border-radius: 0.5rem; padding: 1rem; margin-bottom: 1.5rem; text-align: left; font-size: 0.75rem;">
           <strong>Merchant:</strong> Elfgency Growth lab pvt ltd<br>
           <strong>Product:</strong> Project Growth Audit Session<br>
-          <strong>Fee:</strong> ₹499.00 INR
+          <strong>Fee:</strong> ₹1.00 INR
         </div>
         <div style="display: flex; gap: 0.5rem;">
           <button id="sim-fail" style="flex: 1; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border-color); background: #f8fafc; font-weight: 700; cursor: pointer; font-size: 0.75rem; text-transform: uppercase;">
@@ -1747,7 +1747,7 @@
       document.getElementById('sim-fail').onclick = function () {
         document.body.removeChild(overlay);
         var payBtn = document.getElementById('payBtn');
-        payBtn.textContent = 'PAY ₹499 & BOOK SLOT';
+        payBtn.textContent = 'PAY ₹1 & BOOK SLOT';
         payBtn.disabled = false;
         alert('Simulated transaction failed.');
       };
